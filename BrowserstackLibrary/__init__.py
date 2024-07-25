@@ -30,7 +30,7 @@ class BrowserstackLibrary(
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
     ROBOT_LIBRARY_VERSION = VERSION
 
-    def __init__(self, username=None, access_key=None):
+    def __init__(self, username: str = None, access_key: str = None):
         """BrowserstackLibrary can be imported with required arguments.
 
         ``username`` is your username on the Browserstack platform.
@@ -56,7 +56,32 @@ class BrowserstackLibrary(
         logger.info("Initialized BrowserStack client and managers.")
 
     @keyword('Upload Application to Browserstack')
-    def uplaoad_app(self, app_name, app_path=None, app_url=None, custom_id=None):
+    def uplaoad_app(self, app_name: str, app_path: str = None, app_url:str = None, custom_id: str = None):
+        """Uploads an app to Browserstack, either through the PATH or app URL.
+
+        ``app_name`` is the name of the application. Example: "ROBOT.apk"
+
+        ``app_path`` is the relative or absolute path to get to the app. Example: "app/ROBOT.apk"
+        It is only required if app_url is not populated.
+
+        ``app_url`` is your app's remote URL. Make sure it is a publicly accessible URL 
+        as BrowserStack will attempt to download the app from this location.
+        It is only required if app_path is not populated.
+
+        ``custom_id`` is your Custom ID for the application.
+
+        Examples:
+        | ${bs_url} | Upload Application to Browserstack   |
+        | ...       | app_name=ROBOT.apk                   |
+        | ...       | app_path=app/ROBOT.apk               |
+        | ...       | custom_id=ID_123                     |
+        -
+        -
+        | ${bs_url} | Upload Application to Browserstack         |
+        | ...       | app_name=ROBOT.apk                         |
+        | ...       | app_url=https://downloadurl.com/ROBOT.apk  |
+        | ...       | custom_id=ID_123                           |
+        """
 
         if not app_name:
             raise ValueError("app_name must be provided")
@@ -80,6 +105,15 @@ class BrowserstackLibrary(
 
     @keyword('Update Test Case Status in BrowserStack')
     def update_test_status(self):
+        """This keyword must be used as 'TEARDOWN TEST'. 
+        
+        It will send the status of the test execution to 
+        Browserstack as well as error messages that were detected.
+
+        Examples:
+        | Library | BrowserstackLibrary | ${USER_NAME} | ${ACCESS_KEY} |
+        | Test Teardown | Update Test Case Status in BrowserStack | |  |
+        """
         appiumlib = BuiltIn().get_library_instance('AppiumLibrary')
         appium_session_id = appiumlib.get_appium_sessionId()
         result = BuiltIn().get_variable_value("${TEST_STATUS}")
