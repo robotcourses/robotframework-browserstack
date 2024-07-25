@@ -5,6 +5,7 @@ from BrowserstackLibrary.utils import *
 from BrowserstackLibrary.version import VERSION
 
 from robot.api import logger
+from robot.libraries.BuiltIn import BuiltIn
 from robot.api.deco import keyword
 
 
@@ -17,23 +18,36 @@ class BrowserstackLibrary(
     _BrowserstackClient
 ):
     """
-    docstring
+        BrowserstackLibrary is a library for integration with Device Farm Browserstack.
 
+        = Application Upload and Update Test Case Status =
+
+            With the available keywords, you will be able to easily upload your app 
+            (APK, IPA, etc.) directly to Browserstack and also update the Test Cases 
+            executed in Browserstack.
     """
 
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
     ROBOT_LIBRARY_VERSION = VERSION
 
-    def __init__(self, username, access_key):
-        """
-        docstring
+    def __init__(self, username=None, access_key=None):
+        """BrowserstackLibrary can be imported with required arguments.
+
+        ``username`` is your username on the Browserstack platform.
+
+        ``access_key`` is your access key on the Browserstack platform.
+
+        This way, when you start your suite, the app will be sent directly to Browserstack
+
+        Examples:
+        | Library | BrowserstackLibrary | ${USER_NAME} | ${ACCESS_KEY} |
         """
 
         self.auth_user = username
         self.auth_token = access_key
 
         if not self.auth_user or not self.auth_token:
-            raise ValueError("USERNAME and ACCESS_KEY are required")
+            logger.warn("USERNAME and ACCESS_KEY are required")
 
         self.client = _BrowserstackClient(self.auth_user, self.auth_token)
         self.app_manager = _UploadApplication(self.client)
@@ -65,5 +79,10 @@ class BrowserstackLibrary(
             return response.get('app_url')
 
     @keyword('Update Test Case Status in BrowserStack')
-    def update_test_status(self, appium_session_id, result, reason):
+    def update_test_status(self):
+        appiumlib = BuiltIn().get_library_instance('AppiumLibrary')
+        appium_session_id = appiumlib.get_appium_sessionId()
+        result = BuiltIn().get_variable_value("${TEST_STATUS}")
+        reason = BuiltIn().get_variable_value("${TEST_MESSAGE}")
+
         self.status_updater.update_status(appium_session_id, result, reason)

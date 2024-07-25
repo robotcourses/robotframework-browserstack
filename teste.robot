@@ -1,7 +1,9 @@
 *** Settings ***
 Library    AppiumLibrary
-Library    BrowserstackLibrary  robotcourses_P7GMVF  yAs2TMrqtBUnAfS8EHqX
-Test Teardown    Update Test Case Status in BrowserStack  ${SESSION_ID}  ${TEST_STATUS}  ${TEST_MESSAGE}
+Library    BrowserstackLibrary  username=robotcourses_P7GMVF  access_key=yAs2TMrqtBUnAfS8EHqX
+Test Teardown    Run Keywords
+...    Update Test Case Status in BrowserStack
+...    Close Application
 Resource    base.resource
 
 *** Test Cases ***
@@ -30,6 +32,4 @@ Olá Mundo
     ...  interactiveDebugging=${True}
     
     Wait Until Element Is Visible    Next
-    Click Element    Next
-
-    ${SESSION_ID}  Get Appium SessionId
+    Click Element    Nexts
