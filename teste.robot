@@ -13,8 +13,7 @@ Olá Mundo
     ...    app_path=app/app.apk
     ...    custom_id=TED_OUVINTE_123
 
-    Open Application
-    ...  remote_url=http://robotcourses_P7GMVF:yAs2TMrqtBUnAfS8EHqX@hub.browserstack.com:80/wd/hub
+    &{caps}  Create Dictionary  
     ...  automationName=uiautomator2
     ...  platformName=${PLATFORM_NAME}
     ...  deviceName=${DEVICE_NAME}
@@ -30,6 +29,8 @@ Olá Mundo
     ...  disableIdLocatorAutocompletion=${True}
     ...  browserstack.idleTimeout=60
     ...  interactiveDebugging=${True}
+
+    Open Application In Browserstack    capabilities=${caps}
     
     Wait Until Element Is Visible    Next
-    Click Element    Nexts
+    Click Element    Next

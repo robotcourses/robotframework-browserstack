@@ -45,6 +45,7 @@ class BrowserstackLibrary(
 
         self.auth_user = username
         self.auth_token = access_key
+        self.remote_url = f'http://{self.auth_user}:{self.auth_token}@hub.browserstack.com:80/wd/hub'
 
         if not self.auth_user or not self.auth_token:
             logger.warn("USERNAME and ACCESS_KEY are required")
@@ -114,9 +115,53 @@ class BrowserstackLibrary(
         | Library | BrowserstackLibrary | ${USER_NAME} | ${ACCESS_KEY} |
         | Test Teardown | Update Test Case Status in BrowserStack | |  |
         """
-        appiumlib = BuiltIn().get_library_instance('AppiumLibrary')
-        appium_session_id = appiumlib.get_appium_sessionId()
+        appium_lib = BuiltIn().get_library_instance('AppiumLibrary')
+        appium_session_id = appium_lib.get_appium_sessionId()
         result = BuiltIn().get_variable_value("${TEST_STATUS}")
         reason = BuiltIn().get_variable_value("${TEST_MESSAGE}")
 
         self.status_updater.update_status(appium_session_id, result, reason)
+
+    @keyword('Open Application In Browserstack')
+    def open_application(self, capabilities: dict):
+        """
+        This keyword will open the application in Browserstack, sending the desired 
+        capabilities that have been configured.
+
+        Capabilities must be sent as a dictionary type (&{DICT}).
+
+        Example:
+
+        | *** Test Cases ***                                                    | 
+        | Hello World                                                           | 
+        |     | ${bs_url} |Upload Application to Browserstack                   |
+        |     | ...   | app_name=ted.apk                                        |
+        |     | ...   | app_path=app/app.apk                                    |
+        |     | ...   | custom_id=TED_OUVINTE_123                               |
+        |     |         |                                                       |
+        |     | &{caps} |  Create Dictionary                                    |
+        |     | ...  | automationName=uiautomator2                              |
+        |     | ...  | platformName=${PLATFORM_NAME}                            |
+        |     | ...  | deviceName=${DEVICE_NAME}                                |
+        |     | ...  | app=${bs_url}                                            |
+        |     | ...  | project=${BROWSERSTACK_PROJECT}                          |
+        |     | ...  | build=TED                                                |
+        |     | ...  | name=${TEST_NAME}                                        |
+        |     | ...  | bstack:options=${BROWSERSTACK_OPTIONS}                   |
+        |     | ...  | browserstack.networkLogs=${True}                         |
+        |     | ...  | browserstack.networkLogsOptions.captureContent=${True}   |
+        |     | ...  | autoGrantPermissions=${True}                             |
+        |     | ...  | autoAcceptAlerts=${True}                                 |
+        |     | ...  | disableIdLocatorAutocompletion=${True}                   |
+        |     | ...  | browserstack.idleTimeout=60                              |
+        |     | ...  | interactiveDebugging=${True}                             |
+        |     |      |                                                          |
+        |     | Open Application In Browserstack  |  capabilities=${caps}       |
+        """
+        appium_lib = BuiltIn().get_library_instance('AppiumLibrary')
+
+        appium_lib.open_application(
+            remote_url=self.remote_url,
+            alias=None,
+            **capabilities
+        )
