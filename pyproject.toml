@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Robot Courses <git@robotcourses.com.br>"]
 readme = "README.md"
+packages = [
+    {include = "BrowserstackLibrary"}
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
