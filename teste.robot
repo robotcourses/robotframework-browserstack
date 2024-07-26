@@ -13,7 +13,7 @@ Olá Mundo
     ...    app_path=app/app.apk
     ...    custom_id=TED_OUVINTE_123
 
-    &{caps}  Create Dictionary  
+    Open Application In Browserstack
     ...  automationName=uiautomator2
     ...  platformName=${PLATFORM_NAME}
     ...  deviceName=${DEVICE_NAME}
@@ -30,7 +30,5 @@ Olá Mundo
     ...  browserstack.idleTimeout=60
     ...  interactiveDebugging=${True}
 
-    Open Application In Browserstack    capabilities=${caps}
-    
     Wait Until Element Is Visible    Next
     Click Element    Next

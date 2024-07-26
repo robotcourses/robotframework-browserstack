@@ -123,7 +123,7 @@ class BrowserstackLibrary(
         self.status_updater.update_status(appium_session_id, result, reason)
 
     @keyword('Open Application In Browserstack')
-    def open_application(self, capabilities: dict):
+    def open_application(self, **capabilities):
         """
         This keyword will open the application in Browserstack, sending the desired 
         capabilities that have been configured.
