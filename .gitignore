@@ -1,5 +1,6 @@
 \log
 *\__pycache__
+*\app
 log.html
 report.html
 output.xml
@@ -7,3 +8,5 @@ selenium-screenshot-*
 geckodriver-*
 poetry.lock
 .vscode
+test.robot
+base.resource

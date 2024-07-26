@@ -2,7 +2,7 @@
 name = "robotframework-browserstack"
 version = "0.1.0"
 description = "BrowserstackLibrary is a keyword library for integration with Browserstack for mobile testing using Robot Framework and AppiumLibrary."
-license = "License :: OSI Approved :: Apache Software License",
+license = "License :: OSI Approved :: Apache Software License"
 authors = ["Robot Courses <git@robotcourses.com.br>"]
 readme = "README.md"
 packages = [
@@ -28,9 +28,6 @@ classifiers = [
 python = "^3.8"
 requests = "^2.32.3"
 robotframework = "^7.0.1"
-robotframework-appiumlibrary = "^2.0.0"
-appium-python-client = "^3.2.1"
-docutils = "^0.20.1"
 
 
 [build-system]
