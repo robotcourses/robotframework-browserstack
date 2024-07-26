@@ -7,6 +7,18 @@ readme = "README.md"
 packages = [
     {include = "BrowserstackLibrary"}
 ]
+classifiers=[
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: OS Independent",
+    'Topic :: Software Development :: Quality Assurance',
+    "Topic :: Software Development :: Testing",
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.8',
+    'Framework :: Robot Framework',
+    'Framework :: Robot Framework :: Library',
+]
+
+
 
 [tool.poetry.dependencies]
 python = "^3.8"
