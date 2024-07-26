@@ -8,7 +8,7 @@ _BrowserstackLibrary_ is a keyword library for integration with Browserstack for
 
 Before installing the library in your project, ensure that you or your project have access credentials to Browserstack.
 
-If you don't have one, go to <https://www.browserstack.com/> to register.
+If you don't have one, go to https://www.browserstack.com to register.
 
 It is supporting Python 3.8+
 
@@ -85,4 +85,4 @@ Create a file with the content above (name it: ``test_file.robot``) and execute:
 
     robot -d log test_file.robot
 
-Another example, containing the keywords from the Browserstack Library, in a more structured way is in [this repository](https://github.com/robotcourses/RF_Appium)
+Another example, containing the keywords from the Browserstack Library, in a more structured way is in https://github.com/robotcourses/RF_Appium
