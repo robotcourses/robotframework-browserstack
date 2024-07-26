@@ -4,7 +4,7 @@ Browserstack library for RobotFramework
 Introduction
 ------------
 
-_BrowserstackLibrary_ is a keyword library for integration with Browserstack for mobile testing using **Robot Framework** and **AppiumLibrary**. Library can be downloaded from **PyPI**.
+`BrowserstackLibrary`_ is a keyword library for integration with Browserstack for mobile testing using `Robot Framework`_ and **AppiumLibrary**. Library can be downloaded from **PyPI**.
 
 Before installing the library in your project, ensure that you or your project have access credentials to Browserstack.
 
@@ -23,7 +23,7 @@ Later, support for WEB testing will be added.
 Keyword Documentation
 ---------------------
 
-Access [Keyword Documentation](aafasfa) to see available keywords.
+Access [Keyword Documentation](soon) to see available keywords.
 
 
 Installation
@@ -86,3 +86,9 @@ Create a file with the content above (name it: ``test_file.robot``) and execute:
     robot -d log test_file.robot
 
 Another example, containing the keywords from the Browserstack Library, in a more structured way is in https://github.com/robotcourses/RF_Appium
+
+
+.. _BrowserstackLibrary: https://github.com/serhatbolsu/robotframework-appiumlibrary
+.. _Robot Framework: https://robotframework.org
+.. _Keyword Documentation: http://serhatbolsu.github.io/robotframework-appiumlibrary/AppiumLibrary.html
+.. _PyPI: https://pypi.org/project/robotframework-appiumlibrary/

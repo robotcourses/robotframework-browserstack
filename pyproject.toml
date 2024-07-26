@@ -1,13 +1,14 @@
 [tool.poetry]
 name = "robotframework-browserstack"
 version = "0.1.0"
-description = ""
+description = "BrowserstackLibrary is a keyword library for integration with Browserstack for mobile testing using Robot Framework and AppiumLibrary."
+license = "License :: OSI Approved :: Apache Software License",
 authors = ["Robot Courses <git@robotcourses.com.br>"]
 readme = "README.md"
 packages = [
     {include = "BrowserstackLibrary"}
 ]
-classifiers=[
+classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Operating System :: OS Independent",
     'Topic :: Software Development :: Quality Assurance',
@@ -18,7 +19,10 @@ classifiers=[
     'Framework :: Robot Framework :: Library',
 ]
 
-
+[tool.poetry.urls]
+"Documentation" = "blablabla"
+"Github" = "https://github.com/robotcourses/robotframework-browserstack"
+"Bugs Tracker" = "https://github.com/robotcourses/robotframework-browserstack/issues"
 
 [tool.poetry.dependencies]
 python = "^3.8"
