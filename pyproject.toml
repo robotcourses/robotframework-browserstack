@@ -20,7 +20,7 @@ classifiers = [
 ]
 
 [tool.poetry.urls]
-"Documentation" = "blablabla"
+"Documentation" = "https://robotcourses.github.io/robotframework-browserstack/BrowserstackLibrary.html"
 "Github" = "https://github.com/robotcourses/robotframework-browserstack"
 "Bugs Tracker" = "https://github.com/robotcourses/robotframework-browserstack/issues"
 
