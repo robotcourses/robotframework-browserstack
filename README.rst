@@ -23,7 +23,7 @@ Later, support for WEB testing will be added.
 Keyword Documentation
 ---------------------
 
-Access [Keyword Documentation](soon) to see available keywords.
+Access `Keyword Documentation`_  to see available keywords.
 
 
 Installation
@@ -88,7 +88,7 @@ Create a file with the content above (name it: ``test_file.robot``) and execute:
 Another example, containing the keywords from the Browserstack Library, in a more structured way is in https://github.com/robotcourses/RF_Appium
 
 
-.. _BrowserstackLibrary: https://github.com/serhatbolsu/robotframework-appiumlibrary
+.. _BrowserstackLibrary: https://github.com/robotcourses/robotframework-browserstack
 .. _Robot Framework: https://robotframework.org
-.. _Keyword Documentation: http://serhatbolsu.github.io/robotframework-appiumlibrary/AppiumLibrary.html
 .. _PyPI: https://pypi.org/project/robotframework-appiumlibrary/
+.. _Keyword Documentation: https://robotcourses.github.io/robotframework-browserstack/BrowserstackLibrary.html
