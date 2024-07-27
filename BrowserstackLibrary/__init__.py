@@ -72,13 +72,13 @@ class BrowserstackLibrary(
         ``custom_id`` is your Custom ID for the application.
 
         Examples:
-        | ${bs_url} | Upload Application to Browserstack   |
+        | Upload Application to Browserstack     |         |
         | ...       | app_name=ROBOT.apk                   |
         | ...       | app_path=app/ROBOT.apk               |
         | ...       | custom_id=ID_123                     |
         -
         -
-        | ${bs_url} | Upload Application to Browserstack         |
+        | Upload Application to Browserstack           |         |
         | ...       | app_name=ROBOT.apk                         |
         | ...       | app_url=https://downloadurl.com/ROBOT.apk  |
         | ...       | custom_id=ID_123                           |
@@ -96,13 +96,17 @@ class BrowserstackLibrary(
         if not custom_id:
             raise ValueError("custom_id must be provided")
 
+        logger.console('\n')
+        logger.console('INFO: Uploading Application to Browserstack...')
         if app_path:
             response = self.app_manager.upload_app_file(app_name, app_path, custom_id)
         elif app_url:
             response = self.app_manager.upload_public_url(app_name, app_url, custom_id)
+        logger.console('INFO: Upload completed successfuly!')
 
         if response:
             self.browserstack_url = response.get('app_url')
+            logger.console(f'INFO: Browserstack App URL: {self.browserstack_url}')
             return response.get('app_url')
 
     @keyword('Update Test Case Status in BrowserStack')
@@ -129,35 +133,10 @@ class BrowserstackLibrary(
         This keyword will open the application in Browserstack, sending the desired 
         capabilities that have been configured.
 
-        Capabilities must be sent as a dictionary type (&{DICT}).
-
         Example:
 
-        | *** Test Cases ***                                                    | 
-        | Hello World                                                           | 
-        |     | ${bs_url} |Upload Application to Browserstack                   |
-        |     | ...   | app_name=ted.apk                                        |
-        |     | ...   | app_path=app/app.apk                                    |
-        |     | ...   | custom_id=TED_OUVINTE_123                               |
-        |     |         |                                                       |
-        |     | &{caps} |  Create Dictionary                                    |
-        |     | ...  | automationName=uiautomator2                              |
-        |     | ...  | platformName=${PLATFORM_NAME}                            |
-        |     | ...  | deviceName=${DEVICE_NAME}                                |
-        |     | ...  | app=${bs_url}                                            |
-        |     | ...  | project=${BROWSERSTACK_PROJECT}                          |
-        |     | ...  | build=TED                                                |
-        |     | ...  | name=${TEST_NAME}                                        |
-        |     | ...  | bstack:options=${BROWSERSTACK_OPTIONS}                   |
-        |     | ...  | browserstack.networkLogs=${True}                         |
-        |     | ...  | browserstack.networkLogsOptions.captureContent=${True}   |
-        |     | ...  | autoGrantPermissions=${True}                             |
-        |     | ...  | autoAcceptAlerts=${True}                                 |
-        |     | ...  | disableIdLocatorAutocompletion=${True}                   |
-        |     | ...  | browserstack.idleTimeout=60                              |
-        |     | ...  | interactiveDebugging=${True}                             |
-        |     |      |                                                          |
-        |     | Open Application In Browserstack  |  capabilities=${caps}       |
+        | Open Application In Browserstack | automationName=uiautomator2 | platformName=android | deviceName=Google Pixel 7 Pro | project=TEST_PROJECT | build=build_123 | name=${TEST_NAME} |
+        
         """
         appium_lib = BuiltIn().get_library_instance('AppiumLibrary')
 
