@@ -102,6 +102,7 @@ class BrowserstackLibrary(
             response = self.app_manager.upload_public_url(app_name, app_url, custom_id)
 
         if response:
+            self.browserstack_url = response.get('app_url')
             return response.get('app_url')
 
     @keyword('Update Test Case Status in BrowserStack')
@@ -159,6 +160,8 @@ class BrowserstackLibrary(
         |     | Open Application In Browserstack  |  capabilities=${caps}       |
         """
         appium_lib = BuiltIn().get_library_instance('AppiumLibrary')
+
+        capabilities['app'] = self.browserstack_url
 
         appium_lib.open_application(
             remote_url=self.remote_url,

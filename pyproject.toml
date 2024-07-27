@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "robotframework-browserstack"
 version = "0.1.0"
-description = "BrowserstackLibrary is a keyword library for integration with Browserstack for mobile testing using Robot Framework and AppiumLibrary."
+description = "BrowserstackLibrary is a keyword library for integration with Browserstack for mobile testing"
 license = "License :: OSI Approved :: Apache Software License"
 authors = ["Robot Courses <git@robotcourses.com.br>"]
-readme = "README.rst"
+# readme = "README.rst"
 packages = [
     {include = "BrowserstackLibrary"}
 ]
